@@ -36,8 +36,8 @@ const LogIn = () => {
     auth.onAuthStateChanged((user) => {
       setLoading(false);
       console.log("Auth state changed. User:", user);
-      setUser(user);
       if (user) {
+        setUser(user);
         navigate("/chats");
       }
     });
