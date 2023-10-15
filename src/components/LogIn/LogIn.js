@@ -34,9 +34,9 @@ const LogIn = () => {
 
   const isUserAuthenticatedAlready = () => {
     auth.onAuthStateChanged((user) => {
-      setUser(user);
       setLoading(false);
       console.log("Auth state changed. User:", user);
+      setUser(user);
       if (user) {
         navigate("/chats");
       }

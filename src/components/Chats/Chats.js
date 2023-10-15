@@ -71,9 +71,10 @@ const Chats = () => {
     makeRequestToChatEngine();
   }, [user, navigate]);
 
-  //   if (!user || loading) {
-  //     return "loading...";
-  //   }
+  if (!user || loading) {
+    return "loading...";
+  }
+  console.log(user.email);
   return (
     <div className="chats-page">
       <div className="nav-bar">
@@ -85,8 +86,8 @@ const Chats = () => {
       <h1>Chats</h1>
       <ChatEngine
         height="calc(100vh - 66px)"
-        projectID="4a0d31c3-f8d9-401e-82d4-ecb7552e1ed1"
-        username="llfgjrvzm@mozmail.com"
+        publicKey="4a0d31c3-f8d9-401e-82d4-ecb7552e1ed1"
+        userName={user.email}
         userSecret="5FgcCalpxFWUZ0SMBRdgmbxk2BS2"
       />
     </div>
