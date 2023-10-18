@@ -24,50 +24,55 @@ const Chats = () => {
   };
 
   const makeRequestToChatEngine = async () => {
-  try {
-    const response = await fetch("https://api.chatengine.io/users/me", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        projectId: "13a8bd44-cd1a-4b29-b01f-ce385b9eda03",
-        "user-name": user.email,
-        "user-secret": user.uid,
-      },
-    });
-
-    if (response.ok) {
-      setLoading(false);
-    } else {
-      // User does not exist, create a new user
-      const formdata = new FormData();
-      formdata.append("email", user.email);
-      formdata.append("username", user.displayName); // Fixed the username
-      formdata.append("secret", user.uid);
-      const avatar = await getFile(user.photoURL);
-      formdata.append("avatar", avatar, avatar.name);
-
-      const createUserResponse = await fetch("https://api.chatengine.io/users", {
-        method: "POST",
-        body: formdata,
+    try {
+      const response = await fetch("https://api.chatengine.io/users/", {
+        method: "PUT",
         headers: {
-          projectId: "13a8bd44-cd1a-4b29-b01f-ce385b9eda03",
-          "user-name": user.email,
-          "user-secret": user.uid,
-          "private-key": "35c33b4d-99d6-4e5b-8dcb-0c09ea783b3d",
+          "Content-Type": "application/json",
+          "PRIVATE-KEY": "35c33b4d-99d6-4e5b-8dcb-0c09ea783b3d",
         },
+        body: JSON.stringify({
+          username: user.email,
+          secret: user.uid,
+        }),
       });
-
-      if (createUserResponse.ok) {
+      if (response.ok) {
         setLoading(false);
       } else {
-        console.log("Error creating user:", createUserResponse.status, createUserResponse.statusText);
-      }
-    }
-  } catch (error) {
-    console.error("Error making request to ChatEngine:", error);
-  }
-};
+        // User does not exist, create a new user
+        const formdata = new FormData();
+        formdata.append("username", user.displayName); // Fixed the username
+        formdata.append("secret", user.uid);
+        formdata.append("email", user.email);
+        formdata.append("first_name", user.displayName);
+        const avatar = await getFile(user.photoURL);
+        formdata.append("avatar", avatar, avatar.name);
+        formdata.append("project-id", "13a8bd44-cd1a-4b29-b01f-ce385b9eda03");
 
+        const createUserResponse = await fetch(
+          "https://api.chatengine.io/users/",
+          {
+            method: "POST",
+            body: formdata,
+            headers: {
+              "PRIVATE-KEY": "35c33b4d-99d6-4e5b-8dcb-0c09ea783b3d",
+            },
+          }
+        );
+
+        if (createUserResponse.ok) {
+          setLoading(false);
+        } else {
+          console.log(
+            "Error creating user:",
+            createUserResponse.status,
+            createUserResponse.statusText
+          );
+          console.log(await createUserResponse.text());
+        }
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
     if (!user) {
@@ -76,6 +81,7 @@ const Chats = () => {
     }
     makeRequestToChatEngine();
   }, [user, navigate]);
+
   if (!user) {
     return "loading...";
   }
@@ -89,7 +95,7 @@ const Chats = () => {
       </div>
       <h1>Chats</h1>
       <ChatEngine
-        height="calc(100vh - 66px)"
+        height="calc(80vh)"
         projectID="13a8bd44-cd1a-4b29-b01f-ce385b9eda03"
         userName={user.email}
         userSecret={user.uid}
