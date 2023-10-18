@@ -1,4 +1,6 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
+import "./Chats_Desktop.css";
+import "./Chats_Mobile_Portrait.css";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ChatEngine } from "react-chat-engine";

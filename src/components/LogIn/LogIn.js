@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+// CSS
+import "./LogIn_Desktop.css";
 // icons
 import { GoogleOutlined, GithubFilled } from "@ant-design/icons";
 // Context
