@@ -18,6 +18,8 @@ const Chats = () => {
     cookies.remove("auth-token");
     navigate("/");
   };
+  // env variables
+  const projectId = process.env.PROJECT_ID;
 
   const getFile = async (url) => {
     const response = await fetch(url);
@@ -98,7 +100,7 @@ const Chats = () => {
       <h1>Chats</h1>
       <ChatEngine
         height="calc(80vh)"
-        projectID={process.env.PROJECT_ID}
+        projectID={projectId}
         userName={user.email}
         userSecret={user.uid}
       />
