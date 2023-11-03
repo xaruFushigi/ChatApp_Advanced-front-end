@@ -98,7 +98,7 @@ const Chats = () => {
       <h1>Chats</h1>
       <ChatEngine
         height="calc(80vh)"
-        projectID="73ed9d82-e726-43ed-976c-7268f1d5e92a"
+        projectID={process.env.PROJECT_ID}
         userName={user.email}
         userSecret={user.uid}
       />
