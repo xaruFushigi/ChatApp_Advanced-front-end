@@ -100,7 +100,7 @@ const Chats = () => {
       <h1>Chats</h1>
       <ChatEngine
         height="calc(80vh)"
-        projectID={projectId}
+        projectID="73ed9d82-e726-43ed-976c-7268f1d5e92a"
         userName={user.email}
         userSecret={user.uid}
       />
