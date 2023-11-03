@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDuOUTZP3DlCq8D_z8PZT0AS8rxgHgcKPI",
-  authDomain: "chatapp-353d9.firebaseapp.com",
-  projectId: "chatapp-353d9",
-  storageBucket: "chatapp-353d9.appspot.com",
-  messagingSenderId: "886558053739",
-  appId: "1:886558053739:web:55e573c89605744ab7282e",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

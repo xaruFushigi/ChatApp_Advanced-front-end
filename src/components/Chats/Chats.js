@@ -33,7 +33,7 @@ const Chats = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "PRIVATE-KEY": "b25c4a22-a23e-47bc-af5e-097466da43fb",
+          "PRIVATE-KEY": process.env.REACT_APP_PRIVATE_KEY,
         },
         body: JSON.stringify({
           username: user.email,
@@ -59,7 +59,7 @@ const Chats = () => {
             method: "POST",
             body: formdata,
             headers: {
-              "PRIVATE-KEY": "b25c4a22-a23e-47bc-af5e-097466da43fb",
+              "PRIVATE-KEY": process.env.REACT_APP_PRIVATE_KEY,
             },
           }
         );
