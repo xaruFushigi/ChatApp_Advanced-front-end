@@ -31,7 +31,7 @@ const Chats = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "PRIVATE-KEY": "35c33b4d-99d6-4e5b-8dcb-0c09ea783b3d",
+          "PRIVATE-KEY": "b25c4a22-a23e-47bc-af5e-097466da43fb",
         },
         body: JSON.stringify({
           username: user.email,
@@ -49,7 +49,7 @@ const Chats = () => {
         formdata.append("first_name", user.displayName);
         const avatar = await getFile(user.photoURL);
         formdata.append("avatar", avatar, avatar.name);
-        formdata.append("project-id", "13a8bd44-cd1a-4b29-b01f-ce385b9eda03");
+        formdata.append("project-id", "73ed9d82-e726-43ed-976c-7268f1d5e92a");
 
         const createUserResponse = await fetch(
           "https://api.chatengine.io/users/",
@@ -57,7 +57,7 @@ const Chats = () => {
             method: "POST",
             body: formdata,
             headers: {
-              "PRIVATE-KEY": "35c33b4d-99d6-4e5b-8dcb-0c09ea783b3d",
+              "PRIVATE-KEY": "b25c4a22-a23e-47bc-af5e-097466da43fb",
             },
           }
         );
